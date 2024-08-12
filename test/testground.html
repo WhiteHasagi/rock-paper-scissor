@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rock test Site</title>
+        <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="Score">Rock Paper Scissor (LOL verison)</div>
+        <div id="playerResult">Amumu = Paper</div>
+        <div id="compResult">Malphite = Rock</div>
+        <div id="comparisonResult">Gwen = Scissor</div>
+        <div class="ChoiceButton">
+            <button onclick="paper()"><img src="./image/Amumu.jpg">
+              <span>Paper</span></button>
+            <button onclick="rock()"><img src="./image/Malphite.jpg">
+              <span>Rock</span></button>
+            <button onclick="scissor()"><img src="./image/Gwen.jpg">
+              <span>Scissor</span></button>
+        </div>
+    </div>
+    <script>
+        let humanScore=0
+        let computerScore=0
+        let result='';
+
+    function updateScore (){
+        document.getElementById('Score').innerText = "You: " + humanScore + "|Computer: " + computerScore
+        document.getElementById('comparisonResult').innerText = result
+    }
+    function getComputerChoice() {
+      const compChoice = ['rock', 'paper', 'scissor'];
+      const random = Math.floor(Math.random() * compChoice.length);
+      return compChoice[random];
+    }
+        
+    function comparison (humanChoice, computerChoice){
+      if (humanChoice === computerChoice) {
+        result = 'Tie';
+      } else if (
+        (humanChoice === 'rock' && computerChoice === 'scissor') ||
+        (humanChoice === 'paper' && computerChoice === 'rock') ||
+        (humanChoice === 'scissor' && computerChoice === 'paper')
+      ) {
+        result = 'You Win';
+        humanScore += 1;
+      } else {
+        result = 'You Lose';
+        computerScore += 1;
+      }
+      updateScore();
+    }
+
+    function paper() {
+            const humanChoice = 'paper';
+            const computerChoice = getComputerChoice();
+        comparison(humanChoice, computerChoice);
+        document.getElementById('playerResult').innerText = "You choose paper";
+        document.getElementById("compResult").innerText = "Computer choose " + computerChoice;
+        }
+        function rock() {
+            const humanChoice = 'rock';
+            const computerChoice = getComputerChoice();
+        comparison(humanChoice, computerChoice);
+        document.getElementById('playerResult').innerText = "You choose rock";
+        document.getElementById("compResult").innerText = "Computer choose " + computerChoice;
+        }
+        function scissor() {
+            const humanChoice = 'scissor';
+            const computerChoice = getComputerChoice();
+        comparison(humanChoice, computerChoice);
+        document.getElementById('playerResult').innerText = "You choose scissor";
+        document.getElementById("compResult").innerText = "Computer choose " + computerChoice;
+        }
+
+    </script>
+</body>
+</html>
